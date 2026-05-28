@@ -58,10 +58,10 @@ const Home = () => {
         {/* welcome section */}
         <div className='flex items-center justify-between animate-fadeInUp'>
           <div>
-            <h4 className='text-xl font-bold text-gray-800'>
+            <h4 className='text-xl font-bold text-text-primary'>
               {getGreeting()}, {user?.fullName?.split(" ")[0] || "there"} 👋
             </h4>
-            <p className='text-xs text-gray-500 mt-0.5'>Here's what's happening with your finances</p>
+            <p className='text-xs text-text-secondary mt-0.5'>Here's what's happening with your finances</p>
           </div>
         </div>
 
@@ -75,7 +75,7 @@ const Home = () => {
                 icon={<IoMdCard />}
                 label="Total Balance"
                 value={addThousandsSeperator(dashboardData?.totalBalance || 0)}
-                color="bg-gradient-to-br from-violet-500 to-purple-600"
+                color="bg-gradient-to-br from-accent-primary to-accent-primary-dim"
               />
 
               <InfoCard

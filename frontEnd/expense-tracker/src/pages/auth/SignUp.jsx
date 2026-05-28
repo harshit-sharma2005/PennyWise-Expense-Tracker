@@ -65,9 +65,9 @@ const SignUp = () => {
 
   return (
     <AuthLayout>
-      <div className='lg:w-[100%] h-auto md:h-full mt-10 md:mt-0 flex flex-col justify-center'>
-        <h3 className='text-xl font-semibold text-black'>Create an Account</h3>
-        <p className='text-xs text-slate-700 mt-[5px] mb-[6px]'>
+      <div className='lg:w-[100%] h-auto md:h-full mt-10 md:mt-0 flex flex-col justify-center bg-bg-base text-text-primary'>
+        <h3 className='text-xl font-semibold text-text-primary'>Create an Account</h3>
+        <p className='text-xs text-text-secondary mt-[5px] mb-[6px]'>
           Join us today by entering your detail below.
         </p>
 
@@ -102,11 +102,11 @@ const SignUp = () => {
 
           </div>
 
-          {error && <p className='text-red-500 text-xs pb-2.5'>{error}</p>}
-                    <button type="submit"className='btn-primary'>SIGN UP</button>
-                    <p className='text-[13px] text-slate-800 mt-3'>
+          {error && <p className='text-danger text-xs pb-2.5'>{error}</p>}
+                    <button type="submit" className='btn-primary cursor-pointer'>SIGN UP</button>
+                    <p className='text-[13px] text-text-secondary mt-3'>
                       Already have an account?{" "}
-                      <Link className="font-medium text-primary underline " to='/login'>
+                      <Link className="font-medium text-accent-primary underline hover:text-accent-primary-dim transition-colors" to='/login'>
                       LOGIN
                       </Link>
                     </p>

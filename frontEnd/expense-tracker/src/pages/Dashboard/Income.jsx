@@ -12,7 +12,7 @@ import { addThousandsSeperator } from '../../utils/helper'
 import Modal from '../../components/layouts/Modal'
 import AddIncomeForm from '../../components/inputs/AddIncomeForm'
 
-const COLORS = ['#875CF5', '#FA2C37', '#FF6900', '#4f46e5', '#0ea5e9', '#10b981', '#f59e0b', '#ef4444']
+const COLORS = ['#00e676', '#1de9b6', '#ffd740', '#ff6d00', '#40c4ff', '#10b981', '#f59e0b', '#ef4444']
 
 const Income = () => {
   useUserAuth()
@@ -181,50 +181,50 @@ const Income = () => {
         </div>
 
         {/* Filter Bar */}
-        <div className='card mt-4 !p-4'>
+        <div className='card mt-4 !p-4 bg-bg-surface border-border-default'>
           <div className='flex flex-wrap items-end gap-4'>
             <div className='flex-1 min-w-[200px]'>
-              <label className='text-xs font-medium text-gray-500 mb-1 block'>Search by Source</label>
+              <label className='text-xs font-medium text-text-secondary mb-1 block'>Search by Source</label>
               <div className='relative'>
-                <LuSearch className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400' size={16} />
+                <LuSearch className='absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary' size={16} />
                 <input
                   type='text'
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder='Search income...'
-                  className='w-full pl-9 pr-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all'
+                  className='w-full pl-9 pr-3 py-2 text-sm bg-bg-elevated border border-border-default text-text-primary rounded-lg outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/20 transition-all'
                 />
               </div>
             </div>
             <div className='min-w-[160px]'>
-              <label className='text-xs font-medium text-gray-500 mb-1 block'>From Date</label>
+              <label className='text-xs font-medium text-text-secondary mb-1 block'>From Date</label>
               <input
                 type='date'
                 value={filterDateFrom}
                 onChange={(e) => setFilterDateFrom(e.target.value)}
-                className='w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all'
+                className='w-full px-3 py-2 text-sm bg-bg-elevated border border-border-default text-text-primary rounded-lg outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/20 transition-all'
               />
             </div>
             <div className='min-w-[160px]'>
-              <label className='text-xs font-medium text-gray-500 mb-1 block'>To Date</label>
+              <label className='text-xs font-medium text-text-secondary mb-1 block'>To Date</label>
               <input
                 type='date'
                 value={filterDateTo}
                 onChange={(e) => setFilterDateTo(e.target.value)}
-                className='w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all'
+                className='w-full px-3 py-2 text-sm bg-bg-elevated border border-border-default text-text-primary rounded-lg outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/20 transition-all'
               />
             </div>
             {hasActiveFilters && (
               <button
                 onClick={clearFilters}
-                className='flex items-center gap-1 text-xs font-medium text-red-500 hover:text-red-600 bg-red-50 hover:bg-red-100 px-3 py-2.5 rounded-lg transition-all cursor-pointer'
+                className='flex items-center gap-1 text-xs font-medium text-danger hover:text-danger/90 bg-danger-bg hover:bg-danger-bg/80 border border-danger/15 px-3 py-2 rounded-lg transition-all cursor-pointer'
               >
                 <LuX size={14} /> Clear
               </button>
             )}
           </div>
           {hasActiveFilters && (
-            <p className='text-xs text-gray-400 mt-2'>
+            <p className='text-xs text-text-tertiary mt-2'>
               Showing {filteredIncome.length} of {incomeData.length} records
             </p>
           )}
@@ -233,12 +233,12 @@ const Income = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
           <div className='card'>
             <div className='flex items-center justify-between mb-4'>
-              <h5 className='text-lg'>All Income</h5>
+              <h5 className='text-sm font-semibold text-text-primary uppercase tracking-wider'>All Income</h5>
             </div>
             <div className='max-h-[600px] overflow-y-auto pr-2 custom-scrollbar'>
               {filteredIncome.length === 0 && !loading ? (
-                <div className='flex flex-col items-center justify-center py-12 text-gray-400'>
-                  <LuWalletMinimal className='text-4xl mb-3'/>
+                <div className='flex flex-col items-center justify-center py-12 text-text-tertiary'>
+                  <LuWalletMinimal className='text-4xl mb-3 text-text-tertiary'/>
                   <p className='text-sm'>{hasActiveFilters ? "No matching records found" : "No income records found"}</p>
                   <p className='text-xs mt-1'>{hasActiveFilters ? "Try adjusting your filters" : 'Click "Add Income" to get started'}</p>
                 </div>
@@ -261,7 +261,7 @@ const Income = () => {
 
           <div className='card'>
             <div className='flex items-center justify-between mb-2'>
-              <h5 className='text-lg'>Income by Source</h5>
+              <h5 className='text-sm font-semibold text-text-primary uppercase tracking-wider'>Income by Source</h5>
             </div>
             <CustomPieChart
               data={prepareChartData()}

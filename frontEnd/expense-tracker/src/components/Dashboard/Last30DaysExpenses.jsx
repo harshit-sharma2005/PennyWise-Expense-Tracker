@@ -22,10 +22,10 @@ const Last30DaysExpenses = ({ data }) => {
     return (
         <div className='card animate-fadeInUp'>
             <div className='flex items-center justify-between'>
-                <h5 className='text-sm font-semibold text-gray-800'>Last 30 Days Expenses</h5>
-                <span className='text-[10px] font-medium bg-red-50 text-red-500 px-1.5 py-0.5 rounded-full'>Expense</span>
+                <h5 className='text-sm font-semibold text-text-primary uppercase tracking-wider'>Last 30 Days Expenses</h5>
+                <span className='text-[10px] font-medium bg-danger-bg text-danger border border-danger/15 px-1.5 py-0.5 rounded-full'>Expense</span>
             </div>
-            <CustomBarChart data={prepareChartData()} barColor="#FA2C37" />
+            <CustomBarChart data={prepareChartData()} barColor="#ff4d4f" />
         </div>
     )
 }

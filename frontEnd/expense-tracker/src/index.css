@@ -1,47 +1,100 @@
-@import url('https://fonts.googleapis.com/css2?family=Agu+Display&family=Playwrite+HR+Lijeva:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @import "tailwindcss";
 
 @theme {
-    --font-display: "poppins", "sans-serif";
-    --breakpoint-3xl: 1920px;
-    --color-primary: #875cf5;
+  --font-ui: 'DM Sans', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'DM Sans', sans-serif;
+
+  --color-bg-base:              #0d0f0e;
+  --color-bg-surface:           #141614;
+  --color-bg-elevated:          #1a1d1a;
+  --color-bg-sidebar:           #111311;
+  --color-bg-overlay:           rgba(20, 22, 20, 0.92);
+
+  --color-accent-primary:       #00e676;
+  --color-accent-primary-dim:   #00c853;
+  --color-accent-primary-glow:  rgba(0, 230, 118, 0.15);
+  --color-accent-primary-subtle:rgba(0, 230, 118, 0.08);
+
+  --color-success:              #00e676;
+  --color-success-bg:           rgba(0, 230, 118, 0.10);
+  --color-danger:               #ff4d4f;
+  --color-danger-bg:            rgba(255, 77, 79, 0.10);
+  --color-warning:              #ffc107;
+  --color-warning-bg:           rgba(255, 193, 7, 0.10);
+  --color-info:                 #40a9ff;
+  --color-info-bg:              rgba(64, 169, 255, 0.10);
+
+  --color-text-primary:         #e8ebe8;
+  --color-text-secondary:       #9ba89b;
+  --color-text-tertiary:        #5c675c;
+  --color-text-accent:          #00e676;
+  --color-text-inverse:         #0d0f0e;
+
+  --color-border-default:       rgba(255, 255, 255, 0.06);
+  --color-border-strong:        rgba(255, 255, 255, 0.12);
+  --color-border-accent:        rgba(0, 230, 118, 0.40);
+
+  --color-chart-1:              #00e676;
+  --color-chart-2:              #1de9b6;
+  --color-chart-3:              #ffd740;
+  --color-chart-4:              #ff6d00;
+  --color-chart-5:              #40c4ff;
+  --color-chart-area-fill:      rgba(0, 230, 118, 0.12);
+
+  --radius-sm:                  4px;
+  --radius-md:                  8px;
+  --radius-lg:                  12px;
+  --radius-xl:                  16px;
+  --radius-full:                9999px;
+
+  --shadow-card:                0 2px 8px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-accent:              0 0 16px rgba(0, 230, 118, 0.20);
+
+  /* Mapping primary color reference to support existing code */
+  --color-primary:              #00e676;
+  --breakpoint-3xl:             1920px;
 }
 
 @layer base {
     html {
-        font-family: var(--font-display);
+        font-family: var(--font-ui);
+        background-color: var(--color-bg-base);
+        color: var(--color-text-primary);
     }
 
     body {
-        background-color: #fcfbfc;
+        background-color: var(--color-bg-base);
+        color: var(--color-text-primary);
         overflow-x: hidden;
     }
 }
 
 
 .input-box {
-    @apply w-full flex justify-between gap-3 text-sm text-black bg-slate-100 rounded px-4 py-3 mb-4 mt-3 border border-slate-200 outline-none transition-all duration-200;
+    @apply w-full flex justify-between gap-3 text-sm text-text-primary bg-bg-surface rounded px-4 py-3 mb-4 mt-3 border border-border-default outline-none transition-all duration-200;
 }
 
 .input-box:focus-within {
-    @apply border-primary/50 bg-white ring-2 ring-primary/10;
+    @apply border-accent-primary bg-bg-elevated ring-1 ring-accent-primary/20;
 }
 
 .btn-primary {
-    @apply w-full text-sm font-medium text-white bg-violet-500 shadow-lg shadow-purple-600/15 p-[10px] rounded-lg my-1 hover:bg-violet-600 hover:shadow-purple-600/25 transition-all duration-200 active:scale-[0.98];
+    @apply w-full text-sm font-semibold text-text-inverse bg-accent-primary shadow-md shadow-accent-primary-glow p-[10px] rounded-lg my-1 hover:bg-accent-primary-dim transition-all duration-200 active:scale-[0.98];
 }
 
 
 .card {
-    @apply bg-white p-3.5 lg:p-4 rounded-xl shadow-sm border border-gray-200/50 transition-shadow duration-300 hover:shadow-md hover:shadow-gray-200/40;
+    @apply bg-bg-surface p-3.5 lg:p-4 rounded-xl shadow-card border border-border-default transition-all duration-300 hover:shadow-md;
 }
 
 .card-btn {
-    @apply flex items-center gap-1.5 text-[11px] font-medium text-gray-700 hover:text-purple-500 bg-gray-50 hover:bg-purple-50 px-3 py-1 rounded-md border border-gray-200/50 cursor-pointer transition-all duration-200;
+    @apply flex items-center gap-1.5 text-[11px] font-medium text-text-secondary hover:text-accent-primary bg-bg-elevated hover:bg-accent-primary-subtle px-3 py-1 rounded-md border border-border-strong/50 cursor-pointer transition-all duration-200;
 }
 
 .add-btn {
-    @apply flex items-center gap-1.5 text-[12px] font-medium text-white bg-primary hover:bg-violet-600 px-3 py-1 rounded-md cursor-pointer shadow-md shadow-purple-500/20 hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-200 active:scale-[0.97];
+    @apply flex items-center gap-1.5 text-[12px] font-medium text-text-inverse bg-accent-primary hover:bg-accent-primary-dim px-3 py-1 rounded-md cursor-pointer shadow-md shadow-accent-primary-glow hover:shadow-lg transition-all duration-200 active:scale-[0.97];
 }
 
 /* animations */

@@ -10,12 +10,12 @@ function Input({value,onChange,placeholder,label,type}) {
     }
     return (
     <div>
-        <label className='text-[13px] text-slate-800 '>{label}</label>
+        <label className='text-xs text-text-secondary font-medium'>{label}</label>
         <div className='input-box'>
             <input
                 type={type=='password' ? showPassword ? 'text' :'password' :type }
                 placeholder={placeholder}
-                className='w-full bg-transparent outline-none'
+                className='w-full bg-transparent outline-none text-text-primary placeholder:text-text-tertiary'
                 value={value}
                 onChange={(e)=>onChange(e)}
             />
@@ -24,14 +24,14 @@ function Input({value,onChange,placeholder,label,type}) {
                 <>
                 {showPassword ? (
                     <FaRegEye
-                        size={22}
-                        className='text-primary cursor-pointer'
+                        size={16}
+                        className='text-accent-primary cursor-pointer'
                         onClick={()=> toggleShowPassword()}
                     />
                     )
                     : (<FaRegEyeSlash
-                            size={22}
-                            className='text-slate-400 cursor-pointer'
+                            size={16}
+                            className='text-text-tertiary cursor-pointer'
                             onClick={()=>toggleShowPassword()}
                         />
                         )

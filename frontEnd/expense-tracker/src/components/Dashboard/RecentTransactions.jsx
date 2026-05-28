@@ -7,7 +7,7 @@ const RecentTransactions = ({ transactions, onSeeMore }) => {
     return (
         <div className="card animate-fadeInUp">
             <div className='flex items-center justify-between'>
-                <h5 className='text-sm font-semibold text-gray-800'>Recent Transactions</h5>
+                <h5 className='text-sm font-semibold text-text-primary uppercase tracking-wider'>Recent Transactions</h5>
 
                 <button className='card-btn' onClick={onSeeMore}>
                     See All <LuSquareArrowRight className='' />

@@ -18,7 +18,7 @@ const EmojiPickerPopup = ({ icon, onSelect }) => {
     return (
         <div className='flex flex-col items-center mb-6' ref={pickerRef}>
             <div
-                className='w-12 h-12 flex items-center justify-center text-2xl bg-purple-50 rounded-full cursor-pointer hover:bg-purple-100'
+                className='w-12 h-12 flex items-center justify-center text-2xl bg-bg-elevated border border-border-default rounded-full cursor-pointer hover:bg-bg-surface text-text-primary transition-colors'
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {icon || "😊"}
@@ -26,6 +26,7 @@ const EmojiPickerPopup = ({ icon, onSelect }) => {
             {isOpen && (
                 <div className='relative z-50 mt-2'>
                     <EmojiPicker
+                        theme="dark"
                         onEmojiClick={(emojiData) => {
                             onSelect(emojiData?.emoji)
                             setIsOpen(false)

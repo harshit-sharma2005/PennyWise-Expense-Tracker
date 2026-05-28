@@ -57,9 +57,9 @@ const Login = () => {
 
   return (
     <AuthLayout >
-      <div className='lg:w-[70%] h-3/4 md:h-full flex flex-col justify-center'>
-        <h3 className='text-xl font-semibold text-black'>Welcome Back</h3>
-        <p className='text-xs text-slate-700 mt-[5px] mb-6'>Please enter your details to log in</p>
+      <div className='lg:w-[70%] h-3/4 md:h-full flex flex-col justify-center bg-bg-base text-text-primary'>
+        <h3 className='text-xl font-semibold text-text-primary'>Welcome Back</h3>
+        <p className='text-xs text-text-secondary mt-[5px] mb-6'>Please enter your details to log in</p>
 
         <form onSubmit={handleLogin}>
           <Input value={email}
@@ -76,11 +76,11 @@ const Login = () => {
                 type="password"
           />
 
-          {error && <p className='text-red-500 text-xs pb-2.5'>{error}</p>}
-          <button type="submit"className='btn-primary'>LOGIN</button>
-          <p className='text-[13px] text-slate-800 mt-3'>
+          {error && <p className='text-danger text-xs pb-2.5'>{error}</p>}
+          <button type="submit" className='btn-primary cursor-pointer'>LOGIN</button>
+          <p className='text-[13px] text-text-secondary mt-3'>
             Don't have an account?{" "}
-            <Link className="font-medium text-primary underline " to='/signUp'>
+            <Link className="font-medium text-accent-primary underline hover:text-accent-primary-dim transition-colors" to='/signUp'>
             SignUp
             </Link>
           </p>

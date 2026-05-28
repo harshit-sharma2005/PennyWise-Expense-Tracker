@@ -22,10 +22,10 @@ const Last60DaysIncome = ({ data }) => {
     return (
         <div className='card animate-fadeInUp'>
             <div className='flex items-center justify-between'>
-                <h5 className='text-sm font-semibold text-gray-800'>Last 60 Days Income</h5>
-                <span className='text-[10px] font-medium bg-purple-50 text-purple-500 px-1.5 py-0.5 rounded-full'>Income</span>
+                <h5 className='text-sm font-semibold text-text-primary uppercase tracking-wider'>Last 60 Days Income</h5>
+                <span className='text-[10px] font-medium bg-success-bg text-success border border-success/15 px-1.5 py-0.5 rounded-full'>Income</span>
             </div>
-            <CustomBarChart data={prepareChartData()} barColor="#875CF5" />
+            <CustomBarChart data={prepareChartData()} barColor="#00e676" />
         </div>
     )
 }
