@@ -7,15 +7,15 @@ const RecentTransactions = ({ transactions, onSeeMore }) => {
     return (
         <div className="card animate-fadeInUp">
             <div className='flex items-center justify-between'>
-                <h5 className='text-lg font-semibold text-gray-800'>Recent Transactions</h5>
+                <h5 className='text-sm font-semibold text-gray-800'>Recent Transactions</h5>
 
                 <button className='card-btn' onClick={onSeeMore}>
                     See All <LuSquareArrowRight className='' />
                 </button>
             </div>
 
-            <div className='mt-6'>
-                {transactions?.slice(0, 5)?.map((item) => {
+            <div className='mt-3'>
+                {transactions?.slice(0, 4)?.map((item) => {
                     return <TransactionInfoCard
                         key={item._id}
                         title={item.type == 'expense' ? item.category : item.source}

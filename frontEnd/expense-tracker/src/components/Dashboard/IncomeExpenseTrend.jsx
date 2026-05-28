@@ -5,7 +5,7 @@ const IncomeExpenseTrend = ({incomeTransactions, expenseTransactions}) => {
     return (
         <div className='card animate-fadeInUp'>
             <div className='flex items-center justify-between'>
-                <h5 className='text-lg'>Income vs Expense Trend</h5>
+                <h5 className='text-sm font-semibold text-gray-800'>Income vs Expense Trend</h5>
                 <span className='text-xs text-gray-400'>Last 60 days</span>
             </div>
             <CustomAreaChart

@@ -39,8 +39,8 @@ const CustomAreaChart = ({incomeData, expenseData}) => {
     const data = mergeData()
 
     return (
-        <div className='mt-6'>
-            <ResponsiveContainer width="100%" height={300}>
+        <div className='mt-2'>
+            <ResponsiveContainer width="100%" height={185}>
                 <AreaChart data={data}>
                     <defs>
                         <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="1">
@@ -55,23 +55,23 @@ const CustomAreaChart = ({incomeData, expenseData}) => {
                     <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0"/>
                     <XAxis 
                         dataKey="date" 
-                        tick={{fontSize: 12, fill: '#999'}}
+                        tick={{fontSize: 11, fill: '#999'}}
                         axisLine={{stroke: '#e5e7eb'}}
                     />
                     <YAxis 
-                        tick={{fontSize: 12, fill: '#999'}} 
-                        width={60}
+                        tick={{fontSize: 11, fill: '#999'}} 
+                        width={45}
                         axisLine={{stroke: '#e5e7eb'}}
                     />
                     <Tooltip
                         contentStyle={{
                             backgroundColor: '#fff',
-                            borderRadius: '12px',
+                            borderRadius: '8px',
                             border: '1px solid #e5e7eb',
                             boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)'
                         }}
                     />
-                    <Legend wrapperStyle={{fontSize: '12px', paddingTop: '8px'}}/>
+                    <Legend wrapperStyle={{fontSize: '11px', paddingTop: '4px'}}/>
                     <Area
                         type="monotone"
                         dataKey="income"

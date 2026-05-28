@@ -7,7 +7,7 @@ import customLegend from './customLegend'
 
 const CustomPieChart = ({data,label,totalAmount,colors,showTextAnchor}) => {
   return (
-    <ResponsiveContainer width="100%" height={380}>
+    <ResponsiveContainer width="100%" height={190}>
         <PieChart>
             <Pie
                 data={data}
@@ -15,8 +15,8 @@ const CustomPieChart = ({data,label,totalAmount,colors,showTextAnchor}) => {
                 nameKey="name"
                 cx="50%"
                 cy="50%"
-                outerRadius={130}
-                innerRadius={100}
+                outerRadius={65}
+                innerRadius={48}
                 labelLine={false}
             >
             {data.map((entry,index)=>(
@@ -28,8 +28,8 @@ const CustomPieChart = ({data,label,totalAmount,colors,showTextAnchor}) => {
 
             {showTextAnchor && (
                 <>
-                    <text x="50%" y="50%" dy={-25} textAnchor='middle' fill='#666' fontSize="14px" >{label}</text>
-                    <text x="50%" y="50%" dy={8} textAnchor='middle' fill='#333' fontSize="24px" fontWeight="semi-bold" >{totalAmount}</text>
+                    <text x="50%" y="50%" dy={-8} textAnchor='middle' fill='#666' fontSize="10px" >{label}</text>
+                    <text x="50%" y="50%" dy={10} textAnchor='middle' fill='#333' fontSize="15px" fontWeight="600" >{totalAmount}</text>
                 </>
             )}
         </PieChart>
