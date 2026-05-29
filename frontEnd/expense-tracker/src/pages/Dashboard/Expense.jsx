@@ -171,7 +171,7 @@ const Expense = () => {
     <DashboardLayout activeMenu="Expense">
       <div className='my-5 mx-auto'>
         <div className='flex items-center justify-between'>
-          <h5 className='text-xl font-medium'>Expense Overview</h5>
+          <h5 className='text-xl font-medium text-white'>Expense Overview</h5>
           <div className='flex items-center gap-3'>
             <button className='card-btn' onClick={handleDownloadExpense}>
               <LuDownload className='text-base' /> Download
@@ -235,7 +235,7 @@ const Expense = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
           <div className='card'>
             <div className='flex items-center justify-between mb-4'>
-              <h5 className='text-sm font-semibold text-text-primary uppercase tracking-wider'>All Expenses</h5>
+              <h5 className='text-sm font-semibold text-white uppercase tracking-wider'>All Expenses</h5>
             </div>
             <div className='max-h-[600px] overflow-y-auto pr-2 custom-scrollbar'>
               {filteredExpense.length === 0 && !loading ? (
@@ -264,7 +264,7 @@ const Expense = () => {
 
           <div className='card'>
             <div className='flex items-center justify-between mb-2'>
-              <h5 className='text-sm font-semibold text-text-primary uppercase tracking-wider'>Expense by Category</h5>
+              <h5 className='text-sm font-semibold text-white uppercase tracking-wider'>Expense by Category</h5>
             </div>
             <CustomPieChart
               data={prepareChartData()}

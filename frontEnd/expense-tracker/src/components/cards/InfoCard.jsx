@@ -7,8 +7,8 @@ function InfoCard({icon,label,value,color}) {
             {icon}
         </div>
         <div>
-            <h6 className='text-xs text-text-secondary mb-0.5'>{label}</h6>
-            <span className='text-lg font-semibold text-text-primary font-mono'>${value}</span>
+          <h6 className='text-xs text-white mb-0.5'>{label}</h6>
+          <span className='text-lg font-semibold text-white font-mono'>${value}</span>
         </div>
     </div>
 
