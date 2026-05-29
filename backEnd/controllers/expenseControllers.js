@@ -5,7 +5,7 @@ exports.addExpense = async (req, res) => {
     const userId = req.user.id
 
     try {
-        const { icon, category, amount, date } = req.body;
+        const { icon, category, amount, date, note } = req.body;
 
         if (!category || !amount || !date) {
             return res.status(400).json({ message: "All fields are required" })
@@ -17,7 +17,8 @@ exports.addExpense = async (req, res) => {
             icon,
             category,
             amount,
-            date: new Date(date)
+            date: new Date(date),
+            note: note || ""
         })
 
         await newExpense.save()
@@ -42,13 +43,52 @@ exports.getAllExpense = async (req, res) => {
 
 exports.deleteExpense = async (req, res) => {
     try {
-        await Expense.findByIdAndDelete(req.params.id);
+        const deleted = await Expense.findOneAndDelete({
+            _id: req.params.id,
+            userId: req.user.id
+        })
+        if (!deleted) {
+            return res.status(404).json({ message: "Expense not found" })
+        }
         res.json({ message: "Expense deleted successfully" })
     }
     catch (err) {
         res.status(500).json({ message: " Server Error" })
     }
 };
+
+exports.updateExpense = async (req, res) => {
+    try {
+        const { category, amount, date, icon, note } = req.body
+        if (!category || !amount) {
+            return res.status(400).json({ message: "Category and amount are required" })
+        }
+
+        const update = {
+            category,
+            amount,
+            icon,
+            note: note || ""
+        }
+        if (date) {
+            update.date = new Date(date)
+        }
+
+        const updated = await Expense.findOneAndUpdate(
+            { _id: req.params.id, userId: req.user.id },
+            update,
+            { new: true }
+        )
+
+        if (!updated) {
+            return res.status(404).json({ message: "Expense not found" })
+        }
+
+        res.status(200).json(updated)
+    } catch (err) {
+        res.status(500).json({ message: "Server Error" })
+    }
+}
 
 //download all expenses as excel
 exports.downloadExpenseExcel = async (req, res) => {

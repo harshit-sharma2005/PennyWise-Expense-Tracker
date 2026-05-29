@@ -42,14 +42,14 @@ const Expense = () => {
   }
 
   const handleAddExpense = async (expense) => {
-    const { category, amount, date, icon } = expense
+    const { category, amount, date, icon, note } = expense
     if (!category || !amount || !date) {
       toast.error("All fields are required")
       return
     }
     try {
       await axiosInstance.post(API_PATHS.EXPENSE.ADD_EXPENSE, {
-        category, amount, date, icon
+        category, amount, date, icon, note
       })
       setOpenAddExpense(false)
       toast.success("Expense added successfully")
@@ -61,14 +61,14 @@ const Expense = () => {
   }
 
   const handleEditExpense = async (expense) => {
-    const { category, amount, date, icon } = expense
+    const { category, amount, date, icon, note } = expense
     if (!category || !amount) {
       toast.error("Category and amount are required")
       return
     }
     try {
       await axiosInstance.put(API_PATHS.EXPENSE.UPDATE_EXPENSE(editingExpense._id), {
-        category, amount, date, icon
+        category, amount, date, icon, note
       })
       setOpenAddExpense(false)
       setEditingExpense(null)
@@ -81,6 +81,8 @@ const Expense = () => {
   }
 
   const handleDeleteExpense = async (id) => {
+    const confirmed = window.confirm("Delete this expense?")
+    if (!confirmed) return
     try {
       await axiosInstance.delete(API_PATHS.EXPENSE.DELETE_EXPENSE(id))
       toast.success("Expense deleted successfully")
@@ -251,6 +253,7 @@ const Expense = () => {
                     date={moment(item.date).format("Do MMM YYYY")}
                     amount={item.amount}
                     type="expense"
+                    note={item.note}
                     onDelete={() => handleDeleteExpense(item._id)}
                     onEdit={() => openEditModal(item)}
                   />

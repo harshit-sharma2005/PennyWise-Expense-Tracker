@@ -2,7 +2,7 @@ import React from 'react'
 import { LuTrendingUp, LuTrendingDown, LuUtensils, LuTrash2, LuPencil } from 'react-icons/lu'
 
 
-const TransactionInfoCard = ({ title, icon, date, amount, type, hideDeleteBtn, onDelete, onEdit }) => {
+const TransactionInfoCard = ({ title, icon, date, amount, type, note, hideDeleteBtn, onDelete, onEdit }) => {
     const getAmountStyles = () => type === "income" ? "bg-success-bg text-success border border-success/15" : "bg-danger-bg text-danger border border-danger/15"
 
     return (
@@ -15,6 +15,9 @@ const TransactionInfoCard = ({ title, icon, date, amount, type, hideDeleteBtn, o
                 <div>
                     <p className='text-xs text-text-primary font-medium'>{title}</p>
                     <p className='text-[10px] text-text-tertiary mt-0.5'>{date}</p>
+                    {note && (
+                        <p className='text-[10px] text-text-secondary mt-0.5'>{note}</p>
+                    )}
                 </div>
                 <div className='flex items-center gap-2'>
                     {!hideDeleteBtn && (

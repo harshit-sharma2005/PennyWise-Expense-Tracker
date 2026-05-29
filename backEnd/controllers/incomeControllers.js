@@ -7,7 +7,7 @@ exports.addIncome = async (req, res) => {
     const userId = req.user.id
 
     try {
-        const { icon, source, amount, date } = req.body;
+        const { icon, source, amount, date, note } = req.body;
 
         if (!source || !amount || !date) {
             return res.status(400).json({ message: "All fields are required" })
@@ -19,7 +19,8 @@ exports.addIncome = async (req, res) => {
             icon,
             source,
             amount,
-            date: new Date(date)
+            date: new Date(date),
+            note: note || ""
         })
 
         await newIncome.save()
@@ -43,13 +44,52 @@ exports.getAllIncome = async (req, res) => {
 
 exports.deleteIncome = async (req, res) => {
     try {
-        await Income.findByIdAndDelete(req.params.id);
+        const deleted = await Income.findOneAndDelete({
+            _id: req.params.id,
+            userId: req.user.id
+        })
+        if (!deleted) {
+            return res.status(404).json({ message: "Income not found" })
+        }
         res.json({ message: "Income deleted successfully" })
     }
     catch (err) {
         res.status(500).json({ message: " Server Error" })
     }
 };
+
+exports.updateIncome = async (req, res) => {
+    try {
+        const { source, amount, date, icon, note } = req.body
+        if (!source || !amount) {
+            return res.status(400).json({ message: "Source and amount are required" })
+        }
+
+        const update = {
+            source,
+            amount,
+            icon,
+            note: note || ""
+        }
+        if (date) {
+            update.date = new Date(date)
+        }
+
+        const updated = await Income.findOneAndUpdate(
+            { _id: req.params.id, userId: req.user.id },
+            update,
+            { new: true }
+        )
+
+        if (!updated) {
+            return res.status(404).json({ message: "Income not found" })
+        }
+
+        res.status(200).json(updated)
+    } catch (err) {
+        res.status(500).json({ message: "Server Error" })
+    }
+}
 
 //download all income as excel
 exports.downloadIncomeExcel = async (req, res) => {

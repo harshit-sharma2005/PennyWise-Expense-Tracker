@@ -42,14 +42,14 @@ const Income = () => {
   }
 
   const handleAddIncome = async (income) => {
-    const { source, amount, date, icon } = income
+    const { source, amount, date, icon, note } = income
     if (!source || !amount || !date) {
       toast.error("All fields are required")
       return
     }
     try {
       await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
-        source, amount, date, icon
+        source, amount, date, icon, note
       })
       setOpenAddIncome(false)
       toast.success("Income added successfully")
@@ -61,14 +61,14 @@ const Income = () => {
   }
 
   const handleEditIncome = async (income) => {
-    const { source, amount, date, icon } = income
+    const { source, amount, date, icon, note } = income
     if (!source || !amount) {
       toast.error("Source and amount are required")
       return
     }
     try {
       await axiosInstance.put(API_PATHS.INCOME.UPDATE_INCOME(editingIncome._id), {
-        source, amount, date, icon
+        source, amount, date, icon, note
       })
       setOpenAddIncome(false)
       setEditingIncome(null)
@@ -81,6 +81,8 @@ const Income = () => {
   }
 
   const handleDeleteIncome = async (id) => {
+    const confirmed = window.confirm("Delete this income?")
+    if (!confirmed) return
     try {
       await axiosInstance.delete(API_PATHS.INCOME.DELETE_INCOME(id))
       toast.success("Income deleted successfully")
@@ -251,6 +253,7 @@ const Income = () => {
                     date={moment(item.date).format("Do MMM YYYY")}
                     amount={item.amount}
                     type="income"
+                    note={item.note}
                     onDelete={() => handleDeleteIncome(item._id)}
                     onEdit={() => openEditModal(item)}
                   />

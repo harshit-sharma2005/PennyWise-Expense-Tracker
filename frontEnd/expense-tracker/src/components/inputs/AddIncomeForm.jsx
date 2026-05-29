@@ -7,7 +7,8 @@ const AddIncomeForm = ({ onAddIncome, editData }) => {
         source: "",
         amount: "",
         date: "",
-        icon: ""
+        icon: "",
+        note: ""
     })
 
     useEffect(() => {
@@ -16,7 +17,8 @@ const AddIncomeForm = ({ onAddIncome, editData }) => {
                 source: editData.source || "",
                 amount: editData.amount || "",
                 date: editData.date ? new Date(editData.date).toISOString().split('T')[0] : "",
-                icon: editData.icon || ""
+                icon: editData.icon || "",
+                note: editData.note || ""
             })
         }
     }, [editData])
@@ -51,6 +53,14 @@ const AddIncomeForm = ({ onAddIncome, editData }) => {
                 onChange={({ target }) => handleChange("date", target.value)}
                 label="Date"
                 type="date"
+            />
+
+            <Input
+                value={income.note}
+                onChange={({ target }) => handleChange("note", target.value)}
+                label="Note (optional)"
+                placeholder="Short description or details"
+                type="text"
             />
 
             <div className='flex justify-end mt-4'>
