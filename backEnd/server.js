@@ -11,6 +11,8 @@ const dashboardRoutes=require("./routes/dashboardRoutes")
 
 const app=express()
 
+const mongoose = require('mongoose')
+
 //middlewares
 app.use(
     cors({
@@ -23,6 +25,18 @@ app.use(
 app.use(express.json());
 
 connectDB();
+
+// Health check endpoint — returns server + DB connection status
+app.get('/health', (req, res) => {
+    const states = ['disconnected', 'connected', 'connecting', 'disconnecting']
+    const dbState = mongoose.connection.readyState
+    res.json({
+        status: 'ok',
+        server: 'running',
+        db: states[dbState] || 'unknown',
+        dbState
+    })
+})
 
 app.use("/api/v1/auth",authRoutes)     //path ek baar dekhna padega
 app.use("/api/v1/income",incomeRoutes)
