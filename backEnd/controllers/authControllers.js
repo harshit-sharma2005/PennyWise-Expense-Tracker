@@ -5,6 +5,9 @@ const express=require("express")
 
 //generate JWT token
 const generateToken=(id)=>{
+    if (!process.env.JWT_SECRET) {
+        throw new Error("JWT_SECRET is not configured")
+    }
     return jwt.sign(
         {id},               //payload
         process.env.JWT_SECRET, //secret key
@@ -43,6 +46,7 @@ exports.registerUser = async (req,res)=>{
         })
         console.log("ending register")
     }catch(err){
+        console.error("registerUser failed:", err.message || err)
         res.status(500).json({message:"Error registring user",error :err.message});
         }
     }
@@ -64,6 +68,7 @@ exports.loginUser = async (req,res)=>{
         })
     }
     catch(err){
+        console.error("loginUser failed:", err.message || err)
         res.status(500).json({message:"Error logging in user", error: err.message});
     }
 };
